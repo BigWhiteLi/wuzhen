@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-public class DigitalEconomyBackgroundInfo {
+public class DigitalEconomyMapInfo {
     @ApiModelProperty("村庄名称")
     private String ruralName;
     @ApiModelProperty("村庄人均收入")

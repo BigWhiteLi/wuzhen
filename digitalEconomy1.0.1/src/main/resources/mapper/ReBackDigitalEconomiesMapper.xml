@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo929.mapper.DigitalEconomyIofoimapper">
-    <resultMap id="baseResultMap" type="com.example.demo929.entity.DigitaleconomyIofo">
+<mapper namespace="com.example.demo929.mapper.DigitalEconomyInfoMapper">
+    <resultMap id="baseResultMap" type="com.example.demo929.entity.DigitalEconomyInfo">
         <result column="ctime" property="ctime" jdbcType="INTEGER"/>
 
         <result column="patent_application_num" property="patentApplication" jdbcType="BIGINT"/>
@@ -10,7 +10,7 @@
         <result column="broadband_access_num" property="broadbandAccess" jdbcType="BIGINT"/>
         <result column="base_station_num" property="baseStation" jdbcType="BIGINT"/>
     </resultMap>
-    <resultMap id="baseResultMap2" type="com.example.demo929.entity.DigitalEconomyBackgroundInfo">
+    <resultMap id="baseResultMap2" type="com.example.demo929.entity.DigitalEconomyMapInfo">
         <result column="rural_name" property="ruralName" jdbcType="VARCHAR" />
         <result column="enterprises" property="enterprises" jdbcType="BIGINT" />
         <result column="rural_per_income" property="ruralPerIncome" jdbcType="BIGINT" />

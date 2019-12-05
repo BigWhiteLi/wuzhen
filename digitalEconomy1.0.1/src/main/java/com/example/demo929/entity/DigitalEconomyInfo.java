@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 @Data
-public class DigitaleconomyIofo {
+public class DigitalEconomyInfo {
     @JsonIgnore
     private long id;
     private int ctime;

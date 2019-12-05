@@ -3,7 +3,7 @@ package com.example.demo929.service.Impl;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo929.common.utils.RedisUtil;
 import com.example.demo929.entity.*;
-import com.example.demo929.mapper.DigitalEconomyIofoimapper;
+import com.example.demo929.mapper.DigitalEconomyInfoMapper;
 import com.example.demo929.service.DigitaleconomylofoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,27 +23,27 @@ public class DigitaleconomylofoServiceImpl implements DigitaleconomylofoService 
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
-    DigitalEconomyIofoimapper digitaleconomyIofoimapper;
+    DigitalEconomyInfoMapper digitalEconomyInfoMapper;
 //智慧经济第一屏
     @Override
     public Map<String, Object> getEconomyValue() {
-        List<DigitaleconomyIofo> digitaleconomyIofoList;
-        digitaleconomyIofoList = digitaleconomyIofoimapper.findEconomyValue();
-        System.out.println("patent=" + digitaleconomyIofoList);
+        List<DigitalEconomyInfo> digitalEconomyInfoList;
+        digitalEconomyInfoList = digitalEconomyInfoMapper.findEconomyValue();
+        System.out.println("patent=" + digitalEconomyInfoList);
 
         List<Map<String, Object>> patentList = new ArrayList<>();
         List<Map<String, Object>> baseStationBroadbandList = new ArrayList<>();
-        for (DigitaleconomyIofo digitaleconomyIofo : digitaleconomyIofoList) {
+        for (DigitalEconomyInfo digitalEconomyInfo : digitalEconomyInfoList) {
             Map<String, Object> patentMap = new HashMap<>();
-            patentMap.put("ctime", digitaleconomyIofo.getCtime());
-            patentMap.put("patentApplication", digitaleconomyIofo.getPatentApplication());
-            patentMap.put("patentAuthorization", digitaleconomyIofo.getPatentAuthorization());
+            patentMap.put("ctime", digitalEconomyInfo.getCtime());
+            patentMap.put("patentApplication", digitalEconomyInfo.getPatentApplication());
+            patentMap.put("patentAuthorization", digitalEconomyInfo.getPatentAuthorization());
             patentList.add(patentMap);
 
             Map<String, Object> map = new HashMap<>();
-            map.put("ctime", digitaleconomyIofo.getCtime());
-            map.put("broadbandAccess", digitaleconomyIofo.getBroadbandAccess());
-            map.put("baseStation", digitaleconomyIofo.getBaseStation());
+            map.put("ctime", digitalEconomyInfo.getCtime());
+            map.put("broadbandAccess", digitalEconomyInfo.getBroadbandAccess());
+            map.put("baseStation", digitalEconomyInfo.getBaseStation());
             baseStationBroadbandList.add(map);
         }
 
@@ -71,18 +71,18 @@ public class DigitaleconomylofoServiceImpl implements DigitaleconomylofoService 
 //智慧经济中间地图数据
     @Override
     public List<Map<String, Object>>  getEconomyBackgroundValue() {
-        List<DigitalEconomyBackgroundInfo> digitalEconomyBackgroundInfoList;
+        List<DigitalEconomyMapInfo> digitalEconomyMapInfoList;
         List<Map<String, Object>> governanceOverviewList = new ArrayList<>();
-        digitalEconomyBackgroundInfoList = digitaleconomyIofoimapper.findEconomyBackgroundValue();//将数据库返回的数据存到List中
+        digitalEconomyMapInfoList = digitalEconomyInfoMapper.findEconomyBackgroundValue();//将数据库返回的数据存到List中
 
-        for (DigitalEconomyBackgroundInfo digitalEconomyBackgroundInfo : digitalEconomyBackgroundInfoList) {
+        for (DigitalEconomyMapInfo digitalEconomyMapInfo : digitalEconomyMapInfoList) {
             System.out.println("test1");
             Map<String, Object> gdpIncomeMap = new HashMap<>();
-            gdpIncomeMap.put("ruralName", digitalEconomyBackgroundInfo.getRuralName());
-            gdpIncomeMap.put("enterprises", digitalEconomyBackgroundInfo.getEnterprises());
-            gdpIncomeMap.put("ruralPerIncome", digitalEconomyBackgroundInfo.getRuralPerIncome());
-           gdpIncomeMap.put("lng", digitalEconomyBackgroundInfo.getLng());
-           gdpIncomeMap.put("lat", digitalEconomyBackgroundInfo.getLat());
+            gdpIncomeMap.put("ruralName", digitalEconomyMapInfo.getRuralName());
+            gdpIncomeMap.put("enterprises", digitalEconomyMapInfo.getEnterprises());
+            gdpIncomeMap.put("ruralPerIncome", digitalEconomyMapInfo.getRuralPerIncome());
+           gdpIncomeMap.put("lng", digitalEconomyMapInfo.getLng());
+           gdpIncomeMap.put("lat", digitalEconomyMapInfo.getLat());
             governanceOverviewList.add(gdpIncomeMap);
         }
         return governanceOverviewList;
@@ -92,7 +92,7 @@ public class DigitaleconomylofoServiceImpl implements DigitaleconomylofoService 
     public Map<String, Object> getEconomyValue2() {
         Map<String, Object> dataMap = new HashMap<>();
         List<DigitalEconomyIndustryInfo> digitalEconomyIndustryInfoList;
-        digitalEconomyIndustryInfoList = digitaleconomyIofoimapper.findDigitalEconomyIndustryValue();
+        digitalEconomyIndustryInfoList = digitalEconomyInfoMapper.findDigitalEconomyIndustryValue();
         List<Map<String, Object>> investmentList = new ArrayList<>();
         List<Map<String, Object>> industryList = new ArrayList<>();
         List<Map<String, Object>> technologyList = new ArrayList<>();
