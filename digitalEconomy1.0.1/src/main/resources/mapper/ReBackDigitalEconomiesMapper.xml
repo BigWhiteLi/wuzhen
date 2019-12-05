@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo929.mapper.DigitalEconomyIofoimapper">
+    <resultMap id="baseResultMap" type="com.example.demo929.entity.DigitaleconomyIofo">
+        <result column="ctime" property="ctime" jdbcType="INTEGER"/>
+
+        <result column="patent_application_num" property="patentApplication" jdbcType="BIGINT"/>
+        <result column="patent_authorization_num" property="patentAuthorization" jdbcType="BIGINT"/>
+        <result column="broadband_access_num" property="broadbandAccess" jdbcType="BIGINT"/>
+        <result column="base_station_num" property="baseStation" jdbcType="BIGINT"/>
+    </resultMap>
+    <resultMap id="baseResultMap2" type="com.example.demo929.entity.DigitalEconomyBackgroundInfo">
+        <result column="rural_name" property="ruralName" jdbcType="VARCHAR" />
+        <result column="enterprises" property="enterprises" jdbcType="BIGINT" />
+        <result column="rural_per_income" property="ruralPerIncome" jdbcType="BIGINT" />
+        <result column="lng" property="lng" jdbcType="DOUBLE" />
+        <result column="lat" property="lat" jdbcType="DOUBLE" />
+
+    </resultMap>
+    <resultMap id="baseResultMap3" type="com.example.demo929.entity.DigitalEconomyIndustryInfo">
+        <result column="ctime" property="ctime" jdbcType="INTEGER"/>
+        <result column="industry1" property="industryOne" jdbcType="BIGINT" />
+        <result column="industry2" property="industryTwo" jdbcType="BIGINT" />
+        <result column="industry3" property="industryThree" jdbcType="BIGINT" />
+        <result column="technology_person" property="technologyPerson" jdbcType="BIGINT" />
+        <result column="technology_fund" property="technologyFund" jdbcType="BIGINT" />
+
+        <result column="value_textile" property="textile" jdbcType="BIGINT" />
+        <result column="value_clothmanfacture" property="clothManufacture" jdbcType="BIGINT" />
+        <result column="value_agricultural" property="agricultural" jdbcType="BIGINT" />
+        <result column="value_electronic" property="electronic" jdbcType="BIGINT" />
+        <result column="value_canmanfacture" property="canManufacture" jdbcType="BIGINT" />
+    </resultMap>
+
+
+    <select id="findEconomyValue" resultMap="baseResultMap">
+        select ctime, digital_economy_sum, digital_economy_ratio,patent_application_num, patent_authorization_num,broadband_access_num,base_station_num from digital_economy_info ;
+    </select>
+    <select id="findEconomyBackgroundValue" resultMap="baseResultMap2">
+		select rural_name, enterprises,rural_per_income,lng,lat from rural_info where id between 1 and 26;
+	</select>
+    <select id="findDigitalEconomyIndustryValue" resultMap="baseResultMap3">
+		select ctime,industry1, industry2,industry3,technology_person,technology_fund,value_textile,value_clothmanfacture,value_agricultural,value_electronic,value_canmanfacture from economic_info ;
+	</select>
+
+    <select id="findEconomyValue3" resultMap="baseResultMap">
+        select id, ctime, patent_application_num,patent_authorization_num,broadband_access_num,base_station_num from digital_economy_info
+        where ctime between #{startTime} and #{endTime};
+    </select>
+
+</mapper>
